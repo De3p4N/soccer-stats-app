@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+    crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/d0402948ec.js" crossorigin="anonymous"></script>
+
+    <title>StrikeStat</title>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold" href="/">StrikeStat</a>
+
+        <!-- Mobile toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar content -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+            <!-- LEFT SIDE -->
+            <ul class="navbar-nav me-auto">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                        Standings
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        {% for code, name in leagues.items() %}
+                        <li>
+                            <a class="dropdown-item" href="/standings/{{ code }}">{{ name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <!-- Matches -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                        Matches
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        {% for code, name in leagues.items() %}
+                        <li>
+                            <a class="dropdown-item" href="/matches/{{ code }}">
+                                {{ name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <!-- About -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+
+            </ul>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container mt-4">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+crossorigin="anonymous"></script>
+
+</body>
+</html>

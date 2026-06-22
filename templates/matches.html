@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Live Matches -->
+<h2 class="mt-5 mb-4">Live Matches</h2>
+{% if live_matches %}
+    <div class="row">
+
+    {% for match in live_matches %}
+        <div class="col-md-4 mb-3">
+            <div class="card bg-dark text-white h-100 border-0 rounded-4">
+                <div class="card-body">
+                    <div class="row align-items-center">
+
+                        <!-- Teams -->
+                        <div class="col-7">
+                             <!--Home Team name and logo/flag-->
+                            <div class="d-flex align-items-center mb-3">
+                                {% if match.homeTeam.crest %}
+                                    <img src="{{ match.homeTeam.crest }}"
+                                        alt="{{ match.homeTeam.name }}"
+                                        class="rounded-circle me-2"
+                                        style="width:48px; height:48px; object-fit:contain;">
+                                {% endif %}
+
+                                <h6 class="mb-0">{{ match.homeTeam.name }}</h6>
+                            </div>
+
+                             <!--Away Team name and logo/flag-->
+                            <div class="d-flex align-items-center">
+                                {% if match.awayTeam.crest %}
+                                    <img src="{{ match.awayTeam.crest }}"
+                                        alt="{{ match.awayTeam.name }}"
+                                        class="rounded-circle me-2"
+                                        style="width:48px; height:48px; object-fit:contain;">
+                                {% endif %}
+
+                                <h6 class="mb-0">{{ match.awayTeam.name }}</h6>
+                            </div>
+
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="col-1 d-flex justify-content-center">
+                            <div style="height:90px;border-left:1px solid rgba(255,255,255,.25);"></div>
+                        </div>
+
+                        <!-- Live Score -->
+                        <div class="col-4 text-center">
+                            <div class="badge bg-danger mb-2">
+                                LIVE
+                            </div>
+                            <div class="fw-bold fs-5">
+                                {{ match.score.fullTime.home }}
+                                -
+                                {{ match.score.fullTime.away }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endfor %}
+
+</div>
+{% else %}
+    <div class="alert alert-light">
+        No live matches at the moment.
+    </div>
+{% endif %}
+<!-- Upcoming Matches -->
+
+<h2 class="mb-2">Upcoming Matches</h2>
+<h5 class="text-muted mb-4">{{ league_name }}</h5>
+<h4 class="mb-4">All match times are in Central Time (CT)</h4>
+
+{% if upcoming_matches %}
+    <div class="row"> 
+
+    {% for match in upcoming_matches %}
+        <div class="col-md-4 mb-3">
+            <div class="card bg-dark text-white h-100 border-0 rounded-4">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <!-- Teams -->
+                        <div class="col-6">
+
+                            <!--Home Team name and logo/flag-->
+                            <div class="d-flex align-items-center mb-3">
+                                {% if match.homeTeam.crest %}
+                                    <img src="{{ match.homeTeam.crest }}"
+                                        alt="{{ match.homeTeam.name }}"
+                                        class="rounded-circle me-2"
+                                        style="width:48px; height:48px; object-fit:contain;">
+                                {% endif %}
+
+                                <h6 class="mb-0">{{ match.homeTeam.name }}</h6>
+                            </div>
+
+                            <!--Away Team name and logo/flag-->
+                            <div class="d-flex align-items-center">
+                                {% if match.awayTeam.crest %}
+                                    <img src="{{ match.awayTeam.crest }}"
+                                        alt="{{ match.awayTeam.name }}"
+                                        class="rounded-circle me-2"
+                                       style="width:48px; height:48px; object-fit:contain;">
+                                {% endif %}
+                                <h6 class="mb-0">{{ match.awayTeam.name }}</h6>
+                            </div>
+                        </div>
+                        <!-- Divider -->
+                        <div class="col-1 d-flex justify-content-center">
+                            <div style="height:90px;border-left:1px solid rgba(255,255,255,.25);"></div>
+                        </div>
+
+                        <!-- Match Info -->
+                        <div class="col-5 text-center">
+
+                            <div class="fw-bold text-nowrap">
+                                {{ match.match_date }}
+                            </div>
+
+                            <div class="mt-2">
+                                {{ match.kickoff_time }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endfor %}
+</div>
+{% else %}
+<div class="alert alert-light">
+    No upcoming matches available.
+</div>
+{% endif %}
+
+{% endblock %}

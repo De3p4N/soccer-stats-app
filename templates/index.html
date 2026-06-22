@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Title Section (add logo when all functionality is implemented) -->
+<div class="text-center py-5">
+    <img src="{{ url_for('static', filename='images/StrikeStat.png') }}"
+         alt="StrikeStat"
+         class="img-fluid"
+         style="max-height: 350px;">
+    <p class="lead mt-3"></p>
+</div>
+
+<!-- Website features -->
+
+<!--This explains league rankings functionality-->
+<div class="row text-center mb-5">
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h3>🏆</h3>
+                <h5>League Standings</h5>
+                <p>
+                    View current league tables and rankings
+                    for competitions around the world.
+                </p>
+            </div>
+        </div>
+    </div>
+<!-- This explains top scorers tracking ability-->
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <img src="static/images/boot.png" alt="boot"
+                height="50" >
+                <h5>Top Scorers</h5>
+                <p>
+                    Track leading goal scorers and Golden
+                    Boot races across all supported competitions.
+                </p>
+            </div>
+        </div>
+    </div>
+
+<!-- This explains match data tracking-->
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h3>🔴</h3>
+                <h5>Match Data</h5>
+                <p>
+                    View match times for upcoming matches and view
+                    live scores of your favorite teams. 
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SUPPORTED COMPETITIONS -->
+<h2 class="mb-4">Supported Competitions</h2>
+<div class="row">
+
+{% for code, name in leagues.items() %}
+    <div class="col-md-4 col-lg-3 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+
+                {% if code in league_images %}
+                    <img
+                        src="{{ url_for('static', filename=league_images[code]) }}"
+                        alt="{{ name }}"
+                        style="height:60px;"
+                        class="mb-3"
+                    >
+                {% endif %}
+                <h5>{{ name }}</h5>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<footer class="bg-dark text-light mt-5 py-4">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h6 class="mb-3"> <u>Important Information</u></h6>
+
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        • StrikeStat displays fixtures scheduled from the current date up to 30 days into the future.
+                    </li>
+                    <li>
+                        • Live match scores may be delayed by up to 5 minutes due to API update intervals.
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr class="border-secondary my-3">
+
+        <div class="text-center small text-light">
+            &copy; StrikeStat. All rights reserved.
+        </div>
+    </div>
+</footer>
+</div>
+{% endblock %}
