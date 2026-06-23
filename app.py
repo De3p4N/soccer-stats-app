@@ -8,7 +8,7 @@ from footballClient import(get_league_standings, get_live_matches,
 
 # This part of the code configures and initializes the caching method
 config ={
-    "DEBUG": True,
+    "DEBUG": False,
     "CACHE_TYPE": "SimpleCache",
     "CACHE_DEFAULT_TIMEOUT": 300
 }
@@ -134,4 +134,4 @@ def standings(league_code):
                            league_images=LEAGUE_IMAGES)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5555,debug=True)
+    app.run(host='0.0.0.0', port=5555,debug=False)
