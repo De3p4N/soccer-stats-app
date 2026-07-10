@@ -7,6 +7,14 @@ from dotenv import load_dotenv # this imports and uses the API key in the .env f
 from datetime import date, datetime,timedelta # used in get_todays_matches()
 from zoneinfo import ZoneInfo # used to convert timezones to Central Time.
 
+# This function measures how many API requests are called when a user accesses data
+# I used this to measure how many API calls were saved by implementing caching
+api_call_count = 0
+def log_api_call(func_name):
+    global api_call_count
+    api_call_count += 1
+    print(f"[API CALL #{api_call_count}] {func_name}")
+
 # This is used so people don't use your API key
 load_dotenv()
 
@@ -30,6 +38,7 @@ def get_competitions():
 
 # This returns league standings
 def get_league_standings(league_code):
+    log_api_call("get_league_standings") # if user views this data point, this shows how many API requests occured
     response = requests.get(f"{base_url}/competitions/{league_code}/standings", headers=header)
     if response.status_code == 200:
         data = response.json()
@@ -40,6 +49,7 @@ def get_league_standings(league_code):
 
 # returns all current live matches
 def get_live_matches(league_code=None):
+    log_api_call("get_live_matches")
     params = {
         "status": "LIVE",
     }
@@ -69,6 +79,7 @@ def get_live_matches(league_code=None):
 
 # returns matches scheduled for the date the program is accessed
 def get_upcoming_matches(league_code):
+    log_api_call("get_upcoming_matches")
 
     today = date.today()
 
@@ -119,6 +130,7 @@ def get_upcoming_matches(league_code):
     
 # returns the top goalscoring players for their respective leagues
 def get_top_scorers(league_code):
+    log_api_call("get_top_scorers")
     response = requests.get(f"{base_url}/competitions/{league_code}/scorers", headers=header, params={"limit":10}) # API only gives top 10
     if response.status_code == 200:
         return response.json()
