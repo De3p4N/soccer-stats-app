@@ -11,6 +11,16 @@ Whether you're following domestic leagues or international tournaments, StrikeSt
 **Website:** https://strikestat.onrender.com/
 
 ---
+# Project Screenshots
+<img width="944" height="472" alt="Screenshot 2026-07-18 163333" src="https://github.com/user-attachments/assets/c1affa9d-da50-40f2-954d-2722f5cb899b" />
+
+<img width="944" height="470" alt="Screenshot 2026-07-18 163351" src="https://github.com/user-attachments/assets/af877933-b3f4-4c31-87d9-91a7d5b9a33f" />
+
+<img width="943" height="473" alt="Screenshot 2026-07-18 163420" src="https://github.com/user-attachments/assets/d4c0e8d0-56b6-4b67-b1ea-20bc510a1ec7" />
+
+<img width="940" height="473" alt="Screenshot 2026-07-18 163306" src="https://github.com/user-attachments/assets/e87bdf93-53f1-49fd-ad7a-9741be91ecc6" />
+
+
 
 # Features
 
